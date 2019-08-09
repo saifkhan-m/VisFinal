@@ -1,5 +1,5 @@
 import copy
-
+import skimage.measure
 def marchingSquares(image,lim):
     marchImage=copy.deepcopy(image)
     off=int(lim/2)
@@ -55,4 +55,26 @@ def marchCase(caseDict):
 
     return [-1]
 
+def createDict(image,i,j,off):
+    marchDict={}
+    off*=2
 
+    marchDict[1] = [image[x][y] for x in range(i,i+off//2) for y in range(j,j+off//2)]
+    marchDict[2] = [image[x][y] for x in range(i, i + off // 2) for y in range(j + off // 2 +1, j + off )]
+    marchDict[3] = [image[x][y] for x in range(i + off // 2 +1, i + off ) for y in range(j, j + off // 2)]
+    marchDict[4] = [image[x][y] for x in range(i + off // 2 +1, i + off ) for y in range(j + off // 2 +1, j + off)]
+
+    return marchDict
+def marchingSquaresN(image,lim):
+    marchImage=copy.deepcopy(image)
+    off=int(lim/2)
+    for i in range(len(image)-off):
+        for j in range(len(image[0])-off):
+            checkDict = {1: image[i][j], 2: image[i][j + off], 3: image[i + off][j], 4: image[i + off][j + off]}
+            makeB={1:[i,j],2:[i,j+off],3:[i+off,j],4:[i+off,j+off]}
+            changeList=marchCase(checkDict)
+            if max(changeList)>0:
+                for k in changeList:
+                    marchImage[makeB[k][0],makeB[k][1]]=0
+
+    return marchImage

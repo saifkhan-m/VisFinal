@@ -1,7 +1,16 @@
+import math
+
 def binImage(image):
+    maxVal=max(map(max, image))
+    minVal=min(map(min, image))
+    total_bins = 16
+    interval=getInterval(maxVal,minVal,total_bins)
+
     for i in range(len(image)):
         for j in range(len(image[i])):
             image[i][j] = quantize(image[i][j])
+            #image[i][j] = quantize1(image[i][j],interval,total_bins,maxVal,minVal)
+
 
     return image
 
@@ -10,7 +19,10 @@ def quantize(grayVal):
     for i in range(1, 17):
         if grayVal <= (pow(2, 4) * i) - 1:
             return (pow(2, 4) * i) - 8 - 1
-
+def quantize1(grayVal,interval,total_bins,maxVal,minVal):
+    for i in range(total_bins):
+        if minVal+(interval*i) <= grayVal < minVal+(interval*(i+1)):
+            return math.ceil((minVal+(interval*i) + (minVal+(interval*(i+1))))/2)
 
 def shadeImage(RGB, img):
     for i in range(len(img)):
@@ -46,5 +58,10 @@ def getColor(grayVal):
             return colorList[i - 1]
     return grayVal
 
+def getInterval(maxVal,minVal,total_bins):
+    range = maxVal - minVal
+    interval = math.ceil(range / total_bins)
+    return interval
+print(quantize1(65,3,16,100,55))
+print(getInterval(100,55,16))
 
-print(getColor(55))
