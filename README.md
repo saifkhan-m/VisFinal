@@ -1,7 +1,7 @@
 # Elevation extraction of surface using Marching Squares in 2D
 
 Marching squares is a computer graphics algorithm that generates contours for a two-dimensional scalar field.
-In this project, we have implemented this algorithm to extract the elevation map of the surface using a grayscale image. The gray levels in the image signify the elevation of that point in the image. Where 0 represents the lowest point and 255 represents the highest point. Other heights are mapped to intermediate gray levels from 0 to 255.
+In this project, we have implemented this algorithm to extract the elevation map of the surface using a [grayscale image](https://github.com/saifkhan-m/VisFinal/blob/master/Mars_MGS_MOLA_DEM_mosaic_global_1024.jpg). The gray levels in the image signify the elevation of that point in the image. Where 0 represents the lowest point and 255 represents the highest point. Other heights are mapped to intermediate gray levels from 0 to 255.
 
 The code is configured to handle different color bins and cell sizes.
 ### Different Bins
