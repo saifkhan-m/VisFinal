@@ -1,49 +1,20 @@
 import math
-
+from functools import wraps
+from time import time
 
 def binImage(image, totalBins):
-    maxVal = max(map(max, image))
-    minVal = min(map(min, image))
-
-    # interval=getInterval(maxVal,minVal,total_bins)
-
     for i in range(len(image)):
         for j in range(len(image[i])):
-            image[i][j] = quantize(image[i][j])
-            image[i][j] = quantize2(image[i][j], totalBins)
-            # image[i][j] = quantize1(image[i][j],interval,total_bins,maxVal,minVal)
-
+            image[i][j] = quantize(image[i][j], totalBins)
     return image
 
-
-def quantize(grayVal):
-    for i in range(1, 17):
-        if grayVal <= (pow(2, 4) * i) - 1:
-            return (pow(2, 4) * i) - 8 - 1
-
-
-def quantize2(grayVal, totalBins):
+def quantize(grayVal, totalBins):
     interval = 256 / totalBins
-    for i in range(1, totalBins + 1):  #
+    for i in range(1, totalBins + 1):
         if grayVal <= interval * i - 1:
             return int(interval * i - 1)
 
-
-def quantize1(grayVal, interval, total_bins, maxVal, minVal):
-    for i in range(total_bins):
-        if minVal + (interval * i) <= grayVal < minVal + (interval * (i + 1)):
-            return math.ceil((minVal + (interval * i) + (minVal + (interval * (i + 1)))) / 2)
-
-
-def shadeImage(RGB, img):
-    for i in range(len(img)):
-        for j in range(len(img[i])):
-            color = getColor(img[i][j])
-            RGB[i][j] = color
-    return RGB
-
-
-def shadeImage1(RGB, img, totalBins):
+def shadeImage(RGB, img, totalBins):
     for i in range(len(img)):
         for j in range(len(img[i])):
             color = getColor(img[i][j], totalBins)
@@ -85,7 +56,13 @@ def getInterval(maxVal, minVal, total_bins):
     return interval
 
 
-# print(quantize1(65,3,16,100,55))
-# print(getInterval(100,55,16))
-
-#print(binImage([[20, 200, 130], [150, 90, 181], [242, 62, 220]], 4))
+#code referred from https://codereview.stackexchange.com/questions/169870/decorator-to-measure-execution-time-of-a-function
+def timing(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        start = time()
+        result = f(*args, **kwargs)
+        end = time()
+        print( 'Elevation Map of cellsize | {} | with | {} | bins took | {} | seconds'.format(args[2],args[1],end-start))
+        return result
+    return wrapper

@@ -1,23 +1,35 @@
 import copy
-import skimage.measure
-def marchingSquares(image,lim):
+import numpy as np
+def marchingSquares(image,cellSize):
     marchImage=copy.deepcopy(image)
-    off=int(lim/2)
-    for i in range(len(image)-off):
-        for j in range(len(image[0])-off):
-            checkDict = {1: image[i][j], 2: image[i][j + off], 3: image[i + off][j], 4: image[i + off][j + off]}
-            makeB={1:[i,j],2:[i,j+off],3:[i+off,j],4:[i+off,j+off]}
-            changeList=marchCase(checkDict)
+    off=int(cellSize/2)
+    for i in range(0,len(image)-cellSize-2,cellSize):
+        for j in range(0,len(image[0])-cellSize-2,cellSize):
+            checkDict = {1: image[i:i+off+1,j:j+off+1],
+                         2: image[i:i+off+1,j+cellSize:j+cellSize+off+1],
+                         3: image[i+cellSize:i+cellSize+off+1,j:j+off+1],
+                         4: image[i+cellSize:i+cellSize+off+1,j+cellSize:j+cellSize+off+1]}
+            makeB={1:[[i,i+off+1],[j,j+off+1]],
+                   2:[[i,i+off+1],[j+cellSize,j+cellSize+off+1]],
+                   3:[[i+cellSize,i+cellSize+off+1],[j,j+off+1]],
+                   4:[[i+cellSize,i+cellSize+off+1],[j+cellSize,j+cellSize+off+1]]}
+            changeList=marchCase(checkDict,cellSize)
             if max(changeList)>0:
-                for k in changeList:
-                    marchImage[makeB[k][0],makeB[k][1]]=0
 
+                for k in changeList:
+                    grayRange=makeB[k]
+                    for x in range(grayRange[0][0],grayRange[0][1]):
+                        for y in range(grayRange[1][0],grayRange[1][1]):
+                            marchImage[x][y]=0
     return marchImage
 
 
 
-def marchCase(caseDict):
+def marchCase(caseDict,cellSize):
     elements=[]
+
+    caseDict=norm(caseDict)
+    #print(caseDict)
     for key,value in caseDict.items():
         elements.append(value)
     if(len(set(elements))==2):
@@ -55,26 +67,8 @@ def marchCase(caseDict):
 
     return [-1]
 
-def createDict(image,i,j,off):
-    marchDict={}
-    off*=2
-
-    marchDict[1] = [image[x][y] for x in range(i,i+off//2) for y in range(j,j+off//2)]
-    marchDict[2] = [image[x][y] for x in range(i, i + off // 2) for y in range(j + off // 2 +1, j + off )]
-    marchDict[3] = [image[x][y] for x in range(i + off // 2 +1, i + off ) for y in range(j, j + off // 2)]
-    marchDict[4] = [image[x][y] for x in range(i + off // 2 +1, i + off ) for y in range(j + off // 2 +1, j + off)]
-
-    return marchDict
-def marchingSquaresN(image,lim):
-    marchImage=copy.deepcopy(image)
-    off=int(lim/2)
-    for i in range(len(image)-off):
-        for j in range(len(image[0])-off):
-            checkDict = {1: image[i][j], 2: image[i][j + off], 3: image[i + off][j], 4: image[i + off][j + off]}
-            makeB={1:[i,j],2:[i,j+off],3:[i+off,j],4:[i+off,j+off]}
-            changeList=marchCase(checkDict)
-            if max(changeList)>0:
-                for k in changeList:
-                    marchImage[makeB[k][0],makeB[k][1]]=0
-
-    return marchImage
+def norm(caseDict):
+    for key,value in caseDict.items():
+        max=np.amax(value)
+        caseDict[key]=max
+    return caseDict
