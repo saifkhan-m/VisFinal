@@ -2,23 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d43661e8-b869-4a09-8f31-c9c1524a3642" name="Default" comment="added initial function">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_1_and_16_bins.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_1_and_4_bins.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_1_and_8_bins.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_2_and_16_bins.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_2_and_4_bins.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_2_and_8_bins.png" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_1_and_16_bins.png" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_1_and_2_bins.png" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_1_and_2_bins.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_1_and_4_bins.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_1_and_8_bins.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_2_and_16_bins.png" afterPath="$PROJECT_DIR$/Elevation_Map_of_cellsize_2_and_2_bins.png" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_2_and_2_bins.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_2_and_4_bins.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Elevation_Map_of cellsize_2_and_8_bins.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/FinalVis.py" afterPath="$PROJECT_DIR$/FinalVis.py" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +29,7 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
+            <state relative-caret-position="347">
               <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
@@ -737,7 +720,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
+        <state relative-caret-position="347">
           <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
