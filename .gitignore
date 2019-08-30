@@ -1,3 +1,4 @@
+.gitignore
 __pycache*
 .idea
 Mars_MGS_MOLA_DEM_mosaic_global_463m.tif
